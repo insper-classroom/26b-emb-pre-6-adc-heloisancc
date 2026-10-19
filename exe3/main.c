@@ -26,25 +26,12 @@ void data_task(void *p) {
 void process_task(void *p) {
     int data = 0;
 
-    // média móvel de janela 5 (vetor circular)
-    int janela[5] = {0, 0, 0, 0, 0};
-    int idx = 0;
-    int soma = 0;
-    int n = 0;
-
     while (true) {
         if (xQueueReceive(xQueueData, &data, 100)) {
-            soma -= janela[idx];   // remove a amostra mais antiga
-            janela[idx] = data;    // insere a nova
-            soma += data;
-            idx = (idx + 1) % 5;
+            // implementar filtro aqui!
 
-            if (n < 5) {
-                n++;
-            }
 
-            int filtrado = soma / n;
-            printf("%d \n", filtrado);
+
 
             // deixar esse delay!
             vTaskDelay(pdMS_TO_TICKS(50));
