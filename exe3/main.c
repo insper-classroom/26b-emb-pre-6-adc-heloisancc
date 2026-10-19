@@ -30,7 +30,6 @@ void process_task(void *p) {
     int janela[5] = {0, 0, 0, 0, 0};
     int idx = 0;
     int soma = 0;
-    int n = 0;
 
     while (true) {
         if (xQueueReceive(xQueueData, &data, 100)) {
@@ -39,12 +38,7 @@ void process_task(void *p) {
             soma += data;
             idx = (idx + 1) % 5;
 
-            if (n < 5) {
-                n++;
-            }
-
-            int filtrado = soma / n;
-            printf("%d \n", filtrado);
+            printf("%d \n", soma / 5);
 
             // deixar esse delay!
             vTaskDelay(pdMS_TO_TICKS(50));
